@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<body>
+  
+{% block body %}
+    <!-- Newsletter -->
+    <section class="contact_us section">
+
+        <div class="container">
+
+            <h2 class="title section-title" data-name="Signup To NewsFlash">Signup To NewsFlash</h2>
+
+            <div class="form-container-inner">
+                <form action="" class="form" method="post">
+                    {% csrf_token %}
+                    {{ form.username }}
+                    {{ form.first_name }}
+                    {{ form.last_name }}
+                    {{ form.email }}
+                    {{ form.password1 }}
+                    {{ form.password2 }}
+                    <input class="styled_btn" type="submit" value="Register">
+                </form>
+                <p>
+                    {% for message in messages %}
+                        <span class="text-danger">{{ message }}</span>
+                    {% endfor %}
+                </p>
+                <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+            </div>
+
+        </div>
+
+    </section>
+
+   <script>
+
+    let inputs = document.getElementsByTagName('input');
+    const placeholders = ['Username', 'First name', 'Last name', 'Email address', 'Password', 'Confirm password'];
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].className = "form-input";
+        inputs[i].placeholder = placeholders[i-1];
+        if (i === 7) {
+            inputs[i].className = "styled_btn";
+            inputs[i].style.cursor = "pointer";
+        }
+        
+    }
+
+   </script>
+</body>
+
+{% endblock %}

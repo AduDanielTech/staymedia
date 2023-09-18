@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<body>
+  
+{% block body %}
+
+    <!-- Newsletter -->
+    <section class="contact_us section">
+
+        <div class="container">
+
+            <h2 class="title section-title" data-name="Login To NewsFlash">Login To NewsFlash</h2>
+
+            <div class="form-container-inner">
+                <h6 class="title newsletter-title section-title"  data-name="Welcome ">Welcome </h6>
+                <form action="" method="post" class="form">
+                    {% csrf_token %}
+                    <input class="form-input" type="email" placeholder="Enter your email address" name="email">
+                    <input class="form-input" type="password" placeholder="Password" name="password">
+                    <input class="styled_btn " type="submit" value="Login" style="cursor: pointer;">
+                </form>
+                <p>
+                    {% for message in messages %}
+                        <span class="text-danger">{{ message }}</span>
+                    {% endfor %}
+                </p>
+                <p>Don't have an account? <a href="{% url 'register' %}">Signup</a></p>
+                <p>or</p>
+                <p><a href="">Forgot password ?</a></p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}
+</body>
+</html>
